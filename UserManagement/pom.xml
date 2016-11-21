@@ -41,6 +41,7 @@
 		<!-- Spring -->
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
 		<spring.version>4.3.3.RELEASE</spring.version>
+		<spring-security.version>4.0.4.RELEASE</spring-security.version>
 		<spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 	</properties>
 
@@ -49,8 +50,8 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
-								<version>${spring-boot.version}</version>
-				
+				<version>${spring-boot.version}</version>
+
 			</dependency>
 			<!-- Utility lib -->
 			<dependency>
@@ -96,7 +97,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
+			<!-- Spring security bom -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>${spring-security.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- Db -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>
