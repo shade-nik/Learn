@@ -1,0 +1,31 @@
+#vi temp files
+*~
+*.swp
+
+#Idea
+.idea
+*.iml
+*.ipr
+*.iws
+*.ids
+
+# Ignore Eclipse files
+*.classpath
+.classpath
+*.prefs
+*.project
+.project
+.gitk
+*.settings/
+.externalToolBuilders/
+
+# Generated files/directories
+target/
+build/
+bin/
+logs/
+*.class
+
+.metadata/
+
+
