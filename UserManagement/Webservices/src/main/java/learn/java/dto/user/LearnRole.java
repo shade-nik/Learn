@@ -1,5 +1,7 @@
 package learn.java.dto.user;
 
+import learn.java.enity.user.RoleEntity;
+
 public class LearnRole {
 
 	private String roleName;
@@ -8,6 +10,11 @@ public class LearnRole {
 	public LearnRole() {
 	}
 
+	public LearnRole(RoleEntity entity) {
+		this.roleName = entity.getRoleName();
+		this.description = entity.getDescription();
+	}
+	
 	public LearnRole(String roleName, String description) {
 		super();
 		this.roleName = roleName;

@@ -1,6 +1,9 @@
 package learn.java.dto.user;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import learn.java.enity.user.UserEntity;
 
 public class LearnUser {
 
@@ -10,6 +13,14 @@ public class LearnUser {
 	private Set<LearnRole> roles;
 
 	public LearnUser() {
+	}
+
+	public LearnUser(UserEntity entity) {
+		this.username = entity.getUsername();
+		this.email = entity.getEmail();
+		this.roles = entity.getRoles().stream().map(role -> {
+			return new LearnRole(role);
+		}).collect(Collectors.toSet());
 	}
 	
 	public LearnUser(String username, String email) {
