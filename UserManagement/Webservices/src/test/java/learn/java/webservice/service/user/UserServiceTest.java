@@ -20,8 +20,8 @@ import learn.java.dao.user.RoleEntityDao;
 import learn.java.dao.user.UserEntityDao;
 import learn.java.dto.user.LearnUser;
 import learn.java.dto.user.LearnUsers;
-import learn.java.enity.user.RoleEntity;
-import learn.java.enity.user.UserEntity;
+import learn.java.entity.user.RoleEntity;
+import learn.java.entity.user.UserEntity;
 import learn.java.webservice.exception.UserAlreadyExistsException;
 import learn.java.webservice.exception.UserNotFoundException;
 
@@ -48,7 +48,7 @@ public class UserServiceTest {
 		userTwo.setRoles(buildRoles("Role3", "Role4"));
 
 		List<UserEntity> users = Arrays.asList(userOne, userTwo);
-		expect(userDao.getAll()).andReturn(Optional.of(users));
+		expect(userDao.findAll()).andReturn(users);
 
 		control.replay();
 		LearnUsers response = userService.getAllUsers();
@@ -91,7 +91,7 @@ public class UserServiceTest {
 		final String username = "User";
 		LearnUser user = new LearnUser(buildUserEntity(username));
 		expect(userDao.findByUserName(user.getUsername())).andReturn(Optional.empty());
-		expect(userDao.createUser(user)).andReturn(Optional.of(buildUserEntity(username)));
+		expect(userDao.save(user)).andReturn(Optional.of(buildUserEntity(username)));
 
 		control.replay();
 		LearnUser response = userService.createUser(user);
@@ -114,7 +114,7 @@ public class UserServiceTest {
 		final String username = "User";
 		LearnUser user = new LearnUser(buildUserEntity(username));
 		expect(userDao.findByUserName(user.getUsername())).andReturn(Optional.of(buildUserEntity(username)));
-		expect(userDao.updateUser(user)).andReturn(Optional.of(buildUserEntity(username)));
+		expect(userDao.save(user)).andReturn(Optional.of(buildUserEntity(username)));
 
 		control.replay();
 		LearnUser response = userService.updateUser(user);
@@ -132,7 +132,7 @@ public class UserServiceTest {
 		control.verify();
 	}
 
-	private UserEntity buildUserEntity(String username) {
+	public static UserEntity buildUserEntity(String username) {
 		UserEntity res = new UserEntity();
 		res.setEmail(username + "@mail");
 		res.setUsername(username);
@@ -140,7 +140,7 @@ public class UserServiceTest {
 		return res;
 	}
 
-	private Set<RoleEntity> buildRoles(String... roles) {
+	public static Set<RoleEntity> buildRoles(String... roles) {
 		if (roles != null && roles.length > 0) {
 			Set<RoleEntity> res = new HashSet<>();
 			for (String role : roles) {
@@ -151,7 +151,7 @@ public class UserServiceTest {
 		return Collections.EMPTY_SET;
 	}
 
-	private RoleEntity buildRoleEntity(String roleName) {
+	public static RoleEntity buildRoleEntity(String roleName) {
 		RoleEntity res = new RoleEntity();
 		res.setRoleName(roleName);
 		res.setDescription(roleName + ": description");

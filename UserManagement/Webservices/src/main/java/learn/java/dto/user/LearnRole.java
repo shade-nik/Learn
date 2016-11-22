@@ -1,6 +1,6 @@
 package learn.java.dto.user;
 
-import learn.java.enity.user.RoleEntity;
+import learn.java.entity.user.RoleEntity;
 
 public class LearnRole {
 

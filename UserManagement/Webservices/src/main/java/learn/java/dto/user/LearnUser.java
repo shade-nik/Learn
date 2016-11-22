@@ -3,7 +3,7 @@ package learn.java.dto.user;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import learn.java.enity.user.UserEntity;
+import learn.java.entity.user.UserEntity;
 
 public class LearnUser {
 

@@ -1,12 +1,14 @@
 package learn.java.dao.user;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import learn.java.enity.user.RoleEntity;
+import learn.java.entity.user.RoleEntity;
 
-public interface RoleEntityDao {
+@Repository("roleDao")
+public interface RoleEntityDao extends JpaRepository<RoleEntity, Long> {
 	
-	Optional<List<RoleEntity>> getAll();
+	
+//	Optional<List<RoleEntity>> findAll();
 	
 }
