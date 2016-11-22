@@ -64,5 +64,4 @@ public class UserRestApiImpl implements UserRestApi {
 		LOG.log(Level.FINE, "Received delete request");
 		return null;
 	}
-
 }

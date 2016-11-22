@@ -157,5 +157,4 @@ public class UserServiceTest {
 		res.setDescription(roleName + ": description");
 		return res;
 	}
-
 }
