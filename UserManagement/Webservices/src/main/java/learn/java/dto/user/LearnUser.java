@@ -1,16 +1,21 @@
 package learn.java.dto.user;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import learn.java.entity.user.UserEntity;
 
+@JsonInclude(Include.NON_NULL)
 public class LearnUser {
 
 	private String username;
 	private String email;
 
-	private Set<LearnRole> roles;
+	private Set<LearnRole> roles = new HashSet<>();
 
 	public LearnUser() {
 	}
@@ -18,11 +23,11 @@ public class LearnUser {
 	public LearnUser(UserEntity entity) {
 		this.username = entity.getUsername();
 		this.email = entity.getEmail();
-		this.roles = entity.getRoles().stream().map(role -> {
-			return new LearnRole(role);
-		}).collect(Collectors.toSet());
+		if (entity.getRoles() != null) {
+			this.roles = entity.getRoles().stream().map(LearnRole::toDto).collect(Collectors.toSet());
+		}
 	}
-	
+
 	public LearnUser(String username, String email) {
 		super();
 		this.username = username;
@@ -53,4 +58,15 @@ public class LearnUser {
 		this.roles = roles;
 	}
 
+	public static UserEntity toEntity(LearnUser user) {
+		UserEntity res = new UserEntity();
+		res.setEmail(user.getEmail());
+		res.setUsername(user.getUsername());
+		res.setRoles(user.getRoles().stream().map(LearnRole::toEntity).collect(Collectors.toSet()));
+		return res;
+	}
+
+	public static LearnUser toDto(UserEntity entity) {
+		return new LearnUser(entity);
+	}
 }

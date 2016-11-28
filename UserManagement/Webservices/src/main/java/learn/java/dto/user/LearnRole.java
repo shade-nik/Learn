@@ -1,12 +1,14 @@
 package learn.java.dto.user;
 
+import org.springframework.core.style.ToStringCreator;
+
 import learn.java.entity.user.RoleEntity;
 
 public class LearnRole {
 
 	private String roleName;
 	private String description;
-
+	
 	public LearnRole() {
 	}
 
@@ -36,5 +38,23 @@ public class LearnRole {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	@Override
+	public String toString() {
+		return new ToStringCreator(this)
+				.append("role", roleName)
+				.append("description", description)
+				.toString();
+	}
+	
+	public static RoleEntity toEntity(LearnRole role) {
+		RoleEntity res = new RoleEntity();
+		res.setDescription(role.getDescription());
+		res.setRoleName(role.getRoleName());
+		return res;
+	}
+	
+	public static LearnRole toDto(RoleEntity entity) {
+		return new LearnRole(entity);
+	}
 }

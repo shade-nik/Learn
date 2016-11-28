@@ -1,4 +1,4 @@
-package learn.java.webservice.rest.user;
+package learn.java.webservice.user;
 
 import org.springframework.http.ResponseEntity;
 
@@ -7,13 +7,13 @@ import learn.java.dto.user.LearnUsers;
 
 public interface UserRestApi {
 
-	ResponseEntity<LearnUsers> getAllUsers();
+	ResponseEntity<LearnUsers> getUsers();
 
 	ResponseEntity<LearnUser> getUserByUserName(String usename);
 
 	ResponseEntity<LearnUser> createUser(LearnUser user);
 
-	ResponseEntity<Void> deleteUserByName(String username);
+	ResponseEntity<?> deleteUserByName(String username);
 
 	ResponseEntity<LearnUser> updateUser(String username, LearnUser user);
 

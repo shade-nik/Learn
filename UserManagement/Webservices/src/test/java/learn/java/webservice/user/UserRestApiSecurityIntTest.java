@@ -1,5 +1,7 @@
-package learn.java.webservice.rest.user;
+package learn.java.webservice.user;
 
+import org.easymock.EasyMock;
+import org.easymock.IMocksControl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -19,8 +21,10 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.test.context.web.ServletTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import learn.java.dao.user.UserEntityDao;
 import learn.java.dto.user.LearnUser;
 import learn.java.webservice.WebservicesApplication;
+import learn.java.webservice.user.UserRestApi;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -34,12 +38,17 @@ import learn.java.webservice.WebservicesApplication;
 public class UserRestApiSecurityIntTest {
 
 	@Autowired
-	private UserRestApi userRestApi;
+	private UserRestApiImpl userRestApi;
 	private LearnUser user;
+	
+	private final IMocksControl control = EasyMock.createControl();
+	private final UserService userService = control.createMock(UserService.class);
+
 	
 	@Before
 	public void before() {
 		user = new LearnUser();
+		userRestApi.setUserService(userService);
 	}
 	
 	@After
@@ -62,7 +71,7 @@ public class UserRestApiSecurityIntTest {
 	@Test
 	@WithMockUser(username="AdminUser", roles={"ADMIN","USER"})
 	public void getAllUsers(){
-		userRestApi.getAllUsers();
+		userRestApi.getUsers();
 	}
 	
 	

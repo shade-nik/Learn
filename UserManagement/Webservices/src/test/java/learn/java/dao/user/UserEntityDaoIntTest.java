@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import learn.java.entity.user.UserEntity;
 import learn.java.webservice.JpaRepositoriesConfig;
 import learn.java.webservice.LearnDataSourceConfig;
-import learn.java.webservice.service.user.UserServiceTest;
+import learn.java.webservice.user.UserServiceTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { LearnDataSourceConfig.class, JpaRepositoriesConfig.class })

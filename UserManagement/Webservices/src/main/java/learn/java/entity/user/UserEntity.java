@@ -63,7 +63,7 @@ public class UserEntity {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-	@JoinTable(name = "user_role_xref", 
+	@JoinTable(name = "user_role_xref", /*uniqueConstraints = {}, */
 	           joinColumns = @JoinColumn(
 	        		    name = "xref_user_id", 
 	           			referencedColumnName = "user_id",
